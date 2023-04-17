@@ -41,7 +41,6 @@ function App ()
 
   return (
     <div>
-      <h1>Heading</h1>
       <NewExpense onAddExpense={ addExpenseHandler } />
       <Expenses items={ expenses } />
     </div>

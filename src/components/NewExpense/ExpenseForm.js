@@ -6,6 +6,7 @@ const ExpenseForm = ( props ) =>
   const [ enteredTitle, setEnteredTitle ] = useState( '' );
   const [ enteredAmount, setEnteredAmount ] = useState( '' );
   const [ enteredDate, setEnteredDate ] = useState( '' );
+  const [ flag, setFlag ] = useState( 1 );
 
   const titleChangeHandler = ( e ) =>
   {
@@ -18,6 +19,13 @@ const ExpenseForm = ( props ) =>
   const dateChangeHandler = ( e ) =>
   {
     setEnteredDate( e.target.value );
+  };
+
+
+
+  const flagHandler = () =>
+  {
+    setFlag( flag ? 0 : 1 );
   };
 
   const submitHandler = ( e ) =>
@@ -35,6 +43,17 @@ const ExpenseForm = ( props ) =>
     setEnteredAmount( '' );
     setEnteredDate( '' );
   };
+
+
+
+  if ( flag )
+    return (
+      <div>
+        <button onClick={ flagHandler }>
+          <h2>Add New Expenses</h2>
+        </button>
+      </div>
+    );
 
   return (
     <form onSubmit={ submitHandler }>
@@ -63,7 +82,8 @@ const ExpenseForm = ( props ) =>
         </div>
       </div>
       <div className='new-expense__actions'>
-        <button type='submit'>Add Expense</button>
+        <button type='button' onClick={ flagHandler }>Cancel</button>
+        <button type='submit' onClick={ flagHandler }>Add Expense</button>
       </div>
     </form>
   );
